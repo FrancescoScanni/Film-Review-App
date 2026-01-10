@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registrati</title>
-</head>
+</head> 
     <body>
         <h1>Recensioni film</h1>
         <h2>Registrati</h2>

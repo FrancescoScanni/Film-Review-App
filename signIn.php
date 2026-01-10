@@ -72,6 +72,6 @@
                 <input type="submit" value="Accedi">
         </form>
 
-        <h3><a href="index.php">Sei nuovo? Registrati</a></h3>
+        <h3><a href="registra.php">Sei nuovo? Registrati</a></h3>
     </body>
 </html>
