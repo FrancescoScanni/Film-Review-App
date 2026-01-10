@@ -3,11 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registrati</title>
+    <title>Sign up - Cinescope</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
 </head> 
-    <body>
-        <h1>Recensioni film</h1>
-        <h2>Registrati</h2>
+    <body class="bg-[#fffeff] w-[100vw] flex flex-col items-center">
+        <h1 class="text-[42px] font-semibold mt-[40px]">Cinescope<span class="text-[#da813c]">.</span></h1>
+        <p class="px-[40px] text-[16px] text-center font-semibold">Join our community to share and discover movie reviews from film lovers worldwide.</p>
 
         <?php
             #File managment
@@ -86,32 +88,31 @@
             }
         ?>
 
-        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>"    method="post">
+        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post" class="bg-[#0e56ff] p-8 rounded-[24px] w-[90%] mx-auto mt-10">
+            <label for="nome" class="block text-white font-semibold">Name:</label>
+            <input type="text" name="name" value="<?php echo $name;?>" class="w-full p-2 rounded mt-1 mb-2">
+            <span class="error text-[12px] text-yellow-300">* <?php echo $nameErr;?></span><br>
 
-                <label for="nome">Nome:</label><br>
-                <input type="text" name="name" value="<?php echo $name;?>">
-                <span class="error">* <?php echo $nameErr;?></span><br><br>
+            <label for="cognome" class="block text-white font-semibold">Surname:</label>
+            <input type="text" name="surname" value="<?php echo $surname;?>" class="w-full p-2 rounded mt-1 mb-2">
+            <span class="error text-[12px] text-yellow-300">* <?php echo $surnameErr;?></span><br>
 
-                <label for="cognome">Cognome:</label><br>
-                <input type="text" name="surname" value="<?php echo $surname;?>">
-                <span class="error">* <?php echo $surnameErr;?></span><br><br>
+            <label for="nickname" class="block text-white font-semibold">Nickname:</label>
+            <input type="text" name="nickname" value="<?php echo $nickname;?>" class="w-full p-2 rounded mt-1 mb-2">
+            <span class="error text-[12px] text-yellow-300">* <?php echo $nicknameErr;?></span><br>
 
-                <label for="nickname">Nickname:</label><br>
-                <input type="text" name="nickname" value="<?php echo $nickname;?>">
-                <span class="error">* <?php echo $nicknameErr;?></span><br><br>
+            <label for="email" class="block text-white font-semibold">Email:</label>
+            <input type="email" name="email" value="<?php echo $email;?>" class="w-full p-2 rounded mt-1 mb-2">
+            <span class="error text-[12px] text-yellow-300">* <?php echo $emailErr;?></span><br>
 
-                <label for="email">Email:</label><br>
-                <input type="email" name="email" value="<?php echo $email;?>">
-                <span class="error">* <?php echo $emailErr;?></span><br><br>
+            <label for="password" class="block text-white font-semibold">Password:</label>
+            <input type="password" name="password" value="<?php echo $password;?>" class="w-full p-2 rounded mt-1 mb-4">
+            <span class="error text-[12px] text-yellow-300">* <?php echo $passwordErr;?></span><br>
 
-                <label for="password">Password:</label><br>
-                <input type="password" name="password" value="<?php echo $password;?>">
-                <span class="error">* <?php echo $passwordErr;?></span><br><br>
-
-
-                <input type="submit" value="Registrati">
+            <input type="submit" value="Create Account" class="w-full bg-[#da813c] text-white font-bold py-2 px-4 rounded cursor-pointer mt-6">
         </form>
-            
-        <h3><a href="signIn.php">Hai già un account? Accedi</a></h3>
+
+        <h3 class="text-center mt-4 text-[#000000]"><a href="signIn.php" class="underline hover:text-gray-300">Already have an account? Sign in</a></h3>
+        <footer class="text-[#000000] text-[12px] mt-[20px]">© 2026 Francesco Scanni | All rights reserved</footer>
     </body>
 </html>

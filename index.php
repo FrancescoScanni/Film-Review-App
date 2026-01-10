@@ -23,7 +23,7 @@
 
     <!--Git profile-->
     <div class="gitLink absolute h-[55vh] w-[100vw] flex justify-end mt-[20px] mr-[20px]">
-        <img class="w-[60px] h-[60px] ml-[40px]" src="static\media\git.png" alt="">
+        <a href="https://github.com/FrancescoScanni"><img class="w-[60px] h-[60px] ml-[40px]" src="static\media\git.png" alt=""></a>
     </div>
     
     <!--Leading image-->
@@ -36,9 +36,8 @@
         <h1 class="text-[56px] font-semibold font-serif text-center">Cinescope<span class="font-bold text-[#da813c]">.</span></h1>
         <!--Browsing Menu-->
         <div class="menu flex gap-4 mt-3">
-            <div class="menuItem ">Reviews</div>
-            <div class="menuItem">Films</div>
-            <div class="menuItem">Contacts</div>
+            <div class="menuItem "><a href="allReviews.php">Reviews</a></div>
+            <div class="menuItem"><a href="menuDom\film.php">Films</a></div>
         </div>
         <!--User logs-->
         <div class="user w-[100%] bg-[#0e56ff] flex justify-between mt-9 h-[8vh] bg-[#000000] rounded-[15px] px-[16px] py-[15px]">
@@ -52,7 +51,6 @@
                 </div>
             </div>
             
-
             <div class="icon w-[45px] rounded-[10px] bg-[#fffeff]">
                 <img src="static\media\user.png" class="p-1 w-[100%] h-[100%]" alt="">
             </div>
@@ -65,5 +63,7 @@
     <!--Footer for copyright-->
     <footer class="text-[#000000] text-[12px] mt-[20px]">© 2026 Francesco Scanni | All rights reserved</footer>
     
+
+    <script src="static\js\main.js"></script>
 </body>
 </html>
