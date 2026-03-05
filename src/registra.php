@@ -1,18 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign up - Cinescope</title>
-
-    <script src="https://cdn.tailwindcss.com"></script>
-</head> 
-    <body class="bg-[#fffeff] w-[100vw] flex flex-col items-center">
-        <h1 class="text-[42px] font-semibold mt-[40px]">Cinescope<span class="text-[#da813c]">.</span></h1>
-        <p class="px-[40px] text-[16px] text-center font-semibold">Join our community to share and discover movie reviews from film lovers worldwide.</p>
-
-        <?php
-            #File managment
+<?php
+        #File managment
             $users = fopen("utenti.csv", "a+") or die("Unable to open file!");
             $exists=false;
 
@@ -72,7 +59,7 @@
                     $users = fopen("utenti.csv", "a");
                     fwrite($users, $user);
                     fclose($users);
-                    echo "Utente registrato con successo";
+                    echo "<h1>Successfully signed in!</h1>";
                 } else {
                     header("Location: signIn.php");
                 }
@@ -87,6 +74,24 @@
                 return $data;
             }
         ?>
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign up - Cinescope</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+</head> 
+    <body class="bg-[#fffeff] w-[100vw] flex flex-col items-center">
+        <h1 class="text-[42px] font-semibold mt-[40px]">Cinescope<span class="text-[#da813c]">.</span></h1>
+        <p class="px-[40px] text-[16px] text-center font-semibold">Join our community to share and discover movie reviews from film lovers worldwide.</p>
+
+        
 
         <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post" class="bg-[#0e56ff] p-8 rounded-[24px] w-[90%] mx-auto mt-10">
             <label for="nome" class="block text-white font-semibold">Name:</label>
