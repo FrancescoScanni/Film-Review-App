@@ -6,7 +6,7 @@
     <title>Cinescope - Home Page</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        /* Aggiungiamo un piccolo smooth scroll e font di base */
+
         body { font-family: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif; }
     </style>
 </head>
@@ -43,10 +43,10 @@
         </div>
 
         <div class="menu flex gap-6 mt-3 text-lg md:text-xl font-medium">
-            <div class="menuItem hover:text-[#da813c] transition-colors">
+            <div class="menuItem hover:text-[#ffffff] bg-[#da813c]  p-2 rounded-[15px] transition-colors">
                 <a href="allReviews.php">Reviews</a>
             </div>
-            <div class="menuItem hover:text-[#da813c] transition-colors">
+            <div class="menuItem hover:text-[#da813c] text-center w-[80px] bg-[#da813c] p-2 rounded-[15px] transition-colors">
                 <a href="menuDom/film.php">Films</a>
             </div>
         </div>
