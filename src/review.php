@@ -109,7 +109,7 @@
         <br><br>
         <a href="index.php" 
            class="underline text-[#0e56ff] hover:text-[#da813c] font-semibold">
-           Home screen
+           Home screen (logout)
         </a>
     </h4>
 

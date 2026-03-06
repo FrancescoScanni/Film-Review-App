@@ -1,52 +1,56 @@
 <?php
     session_start();
     
-            $nickname=$email="";
-            $nicknameErr=$emailErr="";
-            $exists=false;
-            if ($_SERVER["REQUEST_METHOD"] == "POST"){
-                if(empty($_POST["nickname"]) || !preg_match("/^[a-zA-ZÀ-ÿ'!? -]+$/",$_POST["nickname"])){
-                    $nicknameErr="Nickname obbligatorio";
-                }else{
-                    if (preg_match("/^[a-zA-Z-' ]*$/",$nickname)) {
-                        $nickname=sanitize($_POST["nickname"]);
-                    }
-                }
+    $nickname = $email = "";
+    $nicknameErr = $emailErr = "";
+    $exists = false;
+    $errorMessage = "";
 
-                if (empty($_POST["email"]) || !filter_var($_POST["email"], FILTER_VALIDATE_EMAIL)){
-                    $emailErr="Email obbligatorio. Rispettare il formato mail valido";
-                }else{
-                    $email=sanitize($_POST["email"]);
-                }
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        // Messaggio tradotto in: "Nickname is required"
+        if (empty($_POST["nickname"]) || !preg_match("/^[a-zA-ZÀ-ÿ'!? -]+$/", $_POST["nickname"])) {
+            $nicknameErr = "Nickname is required";
+        } else {
+            $nickname = sanitize($_POST["nickname"]);
+        }
 
-                $users = fopen("utenti.csv", "r") or die("Unable to open file!");    
-                while(($currentLine = fgets($users)) !== false){
-                    $subUser=explode(",",$currentLine);
-                    if ($subUser[2] === $nickname && $subUser[3]=== $email) {
+        // Messaggio tradotto in: "Email is required. Please use a valid format"
+        if (empty($_POST["email"]) || !filter_var($_POST["email"], FILTER_VALIDATE_EMAIL)) {
+            $emailErr = "Email is required. Please use a valid email format";
+        } else {
+            $email = sanitize($_POST["email"]);
+        }
+
+        if (!empty($nickname) && !empty($email)) {
+            $users = fopen("utenti.csv", "r") or die("Unable to open file!");    
+            while (($currentLine = fgets($users)) !== false) {
+                $subUser = explode(",", $currentLine);
+                if (isset($subUser[2]) && isset($subUser[3])) {
+                    if (trim($subUser[2]) === $nickname && trim($subUser[3]) === $email) {
                         $exists = true;
+                        break;
                     }
                 }
-                fclose($users);
-                if (!$exists) {
-                    echo "<h3>Credenziali errate, riprovare.<br></h3>";
-                } else {
-
-                    $_SESSION["nickname"]=$nickname;
-
-                    #echo "Trovato!";
-                    $url1='review.php';
-                    header('Location: '.$url1);
-                }
             }
+            fclose($users);
 
-            #Funzioni
-            function sanitize($data){
-                $data=trim($data);
-                $data=stripslashes($data);
-                $data=htmlspecialchars($data);
-                return $data;
+            if (!$exists) {
+                // Messaggio tradotto in: "Invalid credentials, please try again."
+                $errorMessage = "Invalid credentials, please try again.";
+            } else {
+                $_SESSION["nickname"] = $nickname;
+                header('Location: review.php');
+                exit();
             }
+        }
+    }
 
+    function sanitize($data) {
+        $data = trim($data);
+        $data = stripslashes($data);
+        $data = htmlspecialchars($data);
+        return $data;
+    }
 ?>
 
 <!DOCTYPE html>
@@ -54,31 +58,46 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Log in - Codescope</title>
-
+    <title>Log in - Cinescope</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
-    <body class="bg-[#fffeff] w-[100vw] flex flex-col items-center min-h-screen h-[100%]">
-        <h1 class="text-[42px] font-semibold mt-[40px]">Cinescope<span class="text-[#da813c]">.</span></h1>
-        <p class="px-[40px] text-[16px] text-center font-semibold">Log in to share and discover and mark from 1 to 10 famous films from an online archive.</p>
+<body class="bg-[#fffeff] w-full flex flex-col items-center min-h-screen">
 
-
-
-        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post" class="bg-[#0e56ff] p-8 rounded-[24px] w-[90%] mx-auto mt-10">
+    <div class=" md:flex w-full h-[25vh] bg-gray-50 rounded-b-[30px] border-b border-gray-100 flex-col justify-center items-center px-10 text-center mt-5 shadow-sm">
+        <h2 class="text-4xl lg:text-5xl font-serif font-semibold text-gray-800 mb-4">
+            Welcome Back to the Front Row
+        </h2>
+        <p class="text-gray-600 text-lg max-w-[700px] leading-relaxed">
+            Ready to rate your next cinematic experience? Log in to access our global movie archive, share your 1-to-10 scores, and see what other film lovers are talking about.
+        </p>
+    </div>
     
-    <label for="nickname" class="block text-[22px] text-white font-semibold">Nickname:</label><br>
-    <input type="text" name="nickname" class="w-full p-2 rounded mt-1 mb-2">
-    <span class="error text-[12px] text-yellow-300">* <?php echo $nicknameErr;?></span><br><br>
 
-    <label for="email" class="block text-white font-semibold text-[22px]">Email:</label><br>
-    <input type="email" name="email" class="w-full p-2 rounded mt-1 mb-2">
-    <span class="error text-[12px] text-yellow-300">* <?php echo $emailErr;?></span><br><br>
+    <?php if ($errorMessage): ?>
+        <div class="mt-4 text-red-600 font-bold"><?php echo $errorMessage; ?></div>
+    <?php endif; ?>
 
-    <input type="submit" class="w-full bg-[#da813c] text-white font-bold py-2 px-4 rounded cursor-pointer mt-6" value="Log in">
+    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post" 
+          class="bg-[#0e56ff] p-8 rounded-[24px] w-[90%] md:max-w-[450px] mt-5 shadow-xl">
+        
+        <label for="nickname" class="block text-[22px] text-white font-semibold">Nickname:</label>
+        <input type="text" name="nickname" class="w-full p-2 rounded mt-1 mb-2 outline-none focus:ring-2 focus:ring-[#da813c]">
+        <span class="error text-[12px] text-yellow-300">* <?php echo $nicknameErr;?></span><br>
 
-        </form>
+        <label for="email" class="block text-white font-semibold text-[22px] mt-4">Email:</label>
+        <input type="email" name="email" class="w-full p-2 rounded mt-1 mb-2 outline-none focus:ring-2 focus:ring-[#da813c]">
+        <span class="error text-[12px] text-yellow-300">* <?php echo $emailErr;?></span><br>
 
-        <h3 class="text-center mt-10 text-[#000000] text-[20px] "><a href="registra.php">New? Sign up and discover</a></h3>
-        <footer class=" absolute text-[#000000] text-[12px] mt-[92vh]">© 2026 Francesco Scanni | All rights reserved</footer>
-    </body>
+        <input type="submit" class="w-full bg-[#da813c] text-white font-bold py-3 px-4 rounded cursor-pointer mt-6 hover:bg-[#c47132] transition-colors" value="Log in">
+    </form>
+
+    <h3 class="text-center mt-5 text-[#000000] text-[16px]">
+        <a href="registra.php" class="underline hover:text-[#0e56ff]">New? Sign up and discover</a>
+    </h3>
+
+    <footer class="text-[#000000] text-[12px] mt-auto pt-10 pb-4">
+        © 2026 Francesco Scanni | All rights reserved
+    </footer>
+
+</body>
 </html>
