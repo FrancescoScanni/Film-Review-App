@@ -20,17 +20,17 @@
         <div class="stats w-[100%]">
             <div class="card bg-[#0e56ff] flex flex-col mx-[10px] mt-[40px] text-white text-center px-[40px] py-[25px] rounded-[10px]">
                 <p class="text-[13px]"><b>Total of film that got a review</b></p>
-                <p class="text-[60px] font-extrabold">3.650</p>
+                <p class="text-[60px] font-extrabold"><!-- Totale di film--></p>
             </div>
 
             <div class="card bg-[#0e56ff] flex flex-col mx-[10px] mt-[10px] text-white text-center px-[40px] py-[25px] rounded-[10px]">
                 <p class="text-[13px]"><b>Number of verified users</b></p>
-                <p class="text-[60px] p-0 font-extrabold">227</p>
+                <p class="text-[60px] p-0 font-extrabold"> <!-- utenti totali --></p>
             </div>
 
             <div class="card bg-[#0e56ff] flex flex-col mx-[10px] mt-[10px] text-white text-center px-[40px] py-[25px] rounded-[10px]">
                 <p class="text-[13px]"><b>Average mark given to films</b></p>
-                <p class="text-[60px] p-0 font-extrabold">7.8</p>
+                <p class="text-[60px] p-0 font-extrabold"> <!-- media generale films --></p>
             </div>
             <div></div>
             

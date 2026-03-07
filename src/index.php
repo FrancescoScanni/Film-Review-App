@@ -44,11 +44,9 @@
 
         <div class="menu flex gap-6 mt-3 text-lg md:text-xl font-medium">
             <div class="menuItem hover:text-[#ffffff] bg-[#da813c]  p-2 rounded-[15px] transition-colors">
-                <a href="allReviews.php">Reviews</a>
+                <a href="signIn.php">Reviews</a>
             </div>
-            <div class="menuItem hover:text-[#da813c] text-center w-[80px] bg-[#da813c] p-2 rounded-[15px] transition-colors">
-                <a href="menuDom/film.php">Films</a>
-            </div>
+        
         </div>
 
         <div class="user w-full max-w-[400px] md:max-w-[500px] bg-black lg:bg-[#0e56ff] flex justify-between items-center mt-9 h-[70px] rounded-[20px] px-5 shadow-xl">
